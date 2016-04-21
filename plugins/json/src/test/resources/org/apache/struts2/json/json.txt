@@ -33,6 +33,59 @@
 	}],
 	"date": "1999-12-31T11:59:59",
 	"date2": "31\/12\/99",
+	"date3": "1999-12-31T00:00:00",
+	"date4": {
+				"chronology": {
+							"calendarType": "iso8601",
+							"id": "ISO"
+				},
+				"dayOfMonth": 31,
+				"dayOfWeek": "FRIDAY",
+				"dayOfYear": 365,
+				"era": "CE",
+				"leapYear": false,
+				"month": "DECEMBER",
+				"monthValue": 12,
+				"year": 1999
+	},
+	"date5": {
+				"chronology": {
+							"calendarType": "iso8601",
+							"id": "ISO"
+				},
+				"dayOfMonth": 31,
+				"dayOfWeek": "FRIDAY",
+				"dayOfYear": 365,
+				"era": "CE",
+				"leapYear": false,
+				"month": "DECEMBER",
+				"monthValue": 12,
+				"year": 1999
+	},
+	"date6": {
+			"dayOfMonth": 31,
+			"dayOfWeek": "FRIDAY",
+			"dayOfYear": 365,
+			"hour": 23,
+			"minute": 59,
+			"month": "DECEMBER",
+			"monthValue": 12,
+			"nano": 0,
+			"second": 59,
+			"year": 1999
+	},
+	"date7": {
+			"dayOfMonth": 31,
+			"dayOfWeek": "FRIDAY",
+			"dayOfYear": 365,
+			"hour": 23,
+			"minute": 59,
+			"month": "DECEMBER",
+			"monthValue": 12,
+			"nano": 0,
+			"second": 59,
+			"year": 1999
+	},
 	"foo": "foo",
 	"list": null,
 	"map": {

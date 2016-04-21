@@ -20,6 +20,8 @@
  */
 package org.apache.struts2.json;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -430,7 +432,41 @@ public class JSONInterceptorTest extends StrutsTestCase {
         assertEquals(calendar.get(Calendar.YEAR), 1999);
         assertEquals(calendar.get(Calendar.MONTH), Calendar.DECEMBER);
         assertEquals(calendar.get(Calendar.DAY_OF_MONTH), 31);
+        
+        // java.sql.Date default format is "yyyy-MM-dd"
+        LocalDate date = action.getDate3().toLocalDate();
+        assertEquals(date.getYear(), 1999);
+        assertEquals(date.getMonthValue(), 12);
+        assertEquals(date.getDayOfMonth(), 31);
+        
+        // LocalDate default format is "yyyy-MM-dd"
+        date = action.getDate4();
+        assertEquals(date.getYear(), 1999);
+        assertEquals(date.getMonthValue(), 12);
+        assertEquals(date.getDayOfMonth(), 31);
+        
+        date = action.getDate5();
+        assertEquals(date.getYear(), 1999);
+        assertEquals(date.getMonthValue(), 12);
+        assertEquals(date.getDayOfMonth(), 31);
 
+        // LocalDateTime default format is "yyyy-MM-ddTHH:mm:ss"
+        LocalDateTime datetime = action.getDate6();
+        assertEquals(datetime.getYear(), 1999);
+        assertEquals(datetime.getMonthValue(), 12);
+        assertEquals(datetime.getDayOfMonth(), 31);
+        assertEquals(datetime.getHour(), 23);
+        assertEquals(datetime.getMinute(), 59);
+        assertEquals(datetime.getSecond(), 59);
+
+        datetime = action.getDate7();
+        assertEquals(datetime.getYear(), 1999);
+        assertEquals(datetime.getMonthValue(), 12);
+        assertEquals(datetime.getDayOfMonth(), 31);
+        assertEquals(datetime.getHour(), 23);
+        assertEquals(datetime.getMinute(), 59);
+        assertEquals(datetime.getSecond(), 59);
+        
         // test desrialize=false
         assertNull(action.getFoo2());
     }

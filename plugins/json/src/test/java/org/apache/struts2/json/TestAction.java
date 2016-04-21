@@ -20,6 +20,8 @@
  */
 package org.apache.struts2.json;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +53,11 @@ public class TestAction extends ActionSupport {
     private Bean bean;
     private Date date;
     private String foo2 = null;
+    private java.sql.Date date3;
+    private LocalDate date4;
+    private LocalDate date5;
+    private LocalDateTime date6;
+    private LocalDateTime date7;
 
     public Bean getBean() {
         return this.bean;
@@ -195,4 +202,49 @@ public class TestAction extends ActionSupport {
     public void setFoo2(String foo2) {
         this.foo2 = foo2;
     }
+
+    public java.sql.Date getDate3() {
+        return date3;
+    }
+
+    public void setDate3(java.sql.Date date3) {
+        this.date3 = date3;
+    }
+
+    public LocalDate getDate4() {
+        return date4;
+    }
+
+    public void setDate4(LocalDate date4) {
+        this.date4 = date4;
+    }
+    
+    @JSON(format = "dd/MM/yyyy")
+    public LocalDate getDate5() {
+        return date5;
+    }
+    
+    @JSON(format = "dd/MM/yyyy")
+    public void setDate5(LocalDate date5) {
+        this.date5 = date5;
+    }
+
+    public LocalDateTime getDate6() {
+        return date6;
+    }
+
+    public void setDate6(LocalDateTime date6) {
+        this.date6 = date6;
+    }
+    
+    @JSON(format = "dd/MM/yyyy HH:mm:ss")
+    public LocalDateTime getDate7() {
+        return date7;
+    }
+    
+    @JSON(format = "dd/MM/yyyy HH:mm:ss")
+    public void setDate7(LocalDateTime date7) {
+        this.date7 = date7;
+    }
+
 }

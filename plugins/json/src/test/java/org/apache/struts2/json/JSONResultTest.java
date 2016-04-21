@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -293,6 +294,12 @@ public class JSONResultTest extends StrutsTestCase {
         calendar.set(Calendar.SECOND, 59);
         action.setDate(calendar.getTime());
         action.setDate2(calendar.getTime());
+        LocalDateTime dateTime = LocalDateTime.parse("1999-12-31T23:59:59");
+        action.setDate3(java.sql.Date.valueOf(dateTime.toLocalDate()));
+        action.setDate4(dateTime.toLocalDate());
+        action.setDate5(dateTime.toLocalDate());
+        action.setDate6(dateTime);
+        action.setDate7(dateTime);
 
         this.invocation.setAction(action);
         result.execute(this.invocation);
@@ -390,6 +397,12 @@ public class JSONResultTest extends StrutsTestCase {
         calendar.set(Calendar.SECOND, 59);
         action.setDate(calendar.getTime());
         action.setDate2(calendar.getTime());
+        LocalDateTime dateTime = LocalDateTime.parse("1999-12-31T23:59:59");
+        action.setDate3(java.sql.Date.valueOf(dateTime.toLocalDate()));
+        action.setDate4(dateTime.toLocalDate());
+        action.setDate5(dateTime.toLocalDate());
+        action.setDate6(dateTime);
+        action.setDate7(dateTime);
 
         this.invocation.setAction(action);
         result.setWrapWithComments(true);

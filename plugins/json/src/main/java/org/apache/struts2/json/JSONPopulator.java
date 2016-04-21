@@ -35,6 +35,10 @@ import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -148,6 +152,7 @@ public class JSONPopulator {
 
     private static boolean isJSONPrimitive(Class clazz) {
         return clazz.isPrimitive() || clazz.equals(String.class) || clazz.equals(Date.class)
+                || clazz.equals(java.sql.Date.class) || clazz.equals(LocalDate.class) || clazz.equals(LocalDateTime.class)
                 || clazz.equals(Boolean.class) || clazz.equals(Byte.class) || clazz.equals(Character.class)
                 || clazz.equals(Double.class) || clazz.equals(Float.class) || clazz.equals(Integer.class)
                 || clazz.equals(Long.class) || clazz.equals(Short.class) || clazz.equals(Locale.class)
@@ -381,6 +386,35 @@ public class JSONPopulator {
                         (json != null) && (json.format().length() > 0) ? json.format() : this.dateFormat);
                 return formatter.parse((String) value);
             } catch (ParseException e) {
+                LOG.error(e.getMessage(), e);
+                throw new JSONException("Unable to parse date from: " + value);
+            }
+        } else if (clazz.equals(java.sql.Date.class)) {
+            try {
+                return java.sql.Date.valueOf((String) value);
+            } catch (IllegalArgumentException e) {
+                LOG.error(e.getMessage(), e);
+                throw new JSONException("Unable to parse date from: " + value);
+            }
+        } else if (clazz.equals(LocalDate.class)) {
+            try {
+                JSON json = method.getAnnotation(JSON.class);
+
+                DateTimeFormatter formatter = (json != null) && (json.format().length() > 0) 
+                        ? DateTimeFormatter.ofPattern(json.format()) : DateTimeFormatter.ISO_LOCAL_DATE;
+                return LocalDate.parse((String) value, formatter);
+            } catch (DateTimeParseException e) {
+                LOG.error(e.getMessage(), e);
+                throw new JSONException("Unable to parse date from: " + value);
+            }
+        } else if (clazz.equals(LocalDateTime.class)) {
+            try {
+                JSON json = method.getAnnotation(JSON.class);
+                
+                DateTimeFormatter formatter = (json != null) && (json.format().length() > 0) 
+                                ? DateTimeFormatter.ofPattern(json.format()) : DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+                                return LocalDateTime.parse((String) value, formatter);
+            } catch (DateTimeParseException e) {
                 LOG.error(e.getMessage(), e);
                 throw new JSONException("Unable to parse date from: " + value);
             }
